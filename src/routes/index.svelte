@@ -19,7 +19,7 @@ import NumberInput from '$lib/NumberInput.svelte';
 
   let costPerKwh:number = 0.23
   let gasCostPerVolume:number = 3.5 //ie price of gas per gallon
-  let gasDistancePerVolume: number = 30 //ie mpg
+  let gasDistancePerVolume: number = 29 //ie mpg
   let kwhPer100Distance:number = 27 // Tesla Model Y Long Range https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406
   let unitType: "imperial" | "metric" = "imperial"
 
@@ -115,10 +115,10 @@ import NumberInput from '$lib/NumberInput.svelte';
   <p>This website lets you compare how much it costs to drive 100 {units.distance.toLowerCase()} in a gas vs electric powered car. For the gas car, enter the cost of gas and fuel efficiency. For the electric car, enter how much you pay per kilowatt hour (KWH), ie from your electric bill or supercharging, and how many KWHs it takes for your car to drive 100 {units.distance.toLowerCase()}.</p>
   <p>How I set the default numbers:</p>
   <ul>
-    <li><b>Miles per {units.volume}:</b> an estimate for the <Blanchor href="https://automobiles.honda.com/cr-v">2022 Honda CRV</Blanchor>, a mid-sized SUV</li>
+    <li><b>Miles per {units.volume}:</b> an estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/noframes/43475.shtml">2021 Honda CRV AWD</Blanchor>, a mid-sized SUV</li>
     <li><b>Cost per {units.volume}:</b> a dollar estimate for the cost of gas</li>
     <li><b>Cost per KWH:</b> my residential electricity cost in the Greater Boston Area</li>
-    <li><b>KWH per 100 {units.distance}:</b> the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406">Tesla Model Y Long Range</Blanchor>, a mid-sized SUV</li>
+    <li><b>KWH per 100 {units.distance}:</b> the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406">2021 Tesla Model Y Long Range</Blanchor>, a mid-sized SUV</li>
   </ul>
 
   <p>You should also check out the Environment Protection Agency <Blanchor href="https://www.epa.gov/greenvehicles/electric-vehicle-myths#Myth5">Electric Vehicle Myths</Blanchor>.</p>
