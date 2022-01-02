@@ -6,23 +6,32 @@
   export let label:string = ""
 	export let value:number = 0
   export let step:number = 1
+
+  /**
+   * restrict the digits in a float value to 2 decimal points of precision
+   * @param value the raw value
+   */
+  function restrictDigits(value: number):number {
+    return parseFloat(value.toPrecision(2)) //restrict to 2 points of precision, then parse back to float
+  }
 </script>
 
 <span>
   <label for={id}>{label}</label>
   <div class="number-input">
-    <button class="icon-container left" on:click={() => value = value - step}>
+    <button class="icon-container left" on:click={() => value = restrictDigits(value - step)}>
       <Fa icon={faMinus}/>
     </button>
 
     <input
       bind:value={value}
       {id}
+      min="0"
       {step}
       type="number"
     />
 
-    <button class="icon-container right" on:click={() => value = value + step}>
+    <button class="icon-container right" on:click={() => value = restrictDigits(value + step)}>
       <Fa icon={faPlus}/>
     </button>
   </div>
