@@ -1,8 +1,6 @@
-# Svelte Kit Template
+# Gas vs Electric Car Mileage Cost Calculator
 
-My own Svelte Kit template!
-
-https://harryli0088.github.io/svelte-kit-template/
+https://harryli0088.github.io/mileage-cost
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
 

@@ -4,7 +4,7 @@
   import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
   import Blanchor from '$lib/Blanchor.svelte';
-import NumberInput from '$lib/NumberInput.svelte';
+  import NumberInput from '$lib/NumberInput.svelte';
 
   const ALL_UNITS = {
     imperial: {
@@ -12,7 +12,7 @@ import NumberInput from '$lib/NumberInput.svelte';
       volume: "Gallon",
     },
     metric: {
-      distance: "Kilometers",
+      distance: "KM",
       volume: "Liter",
     },
   }
@@ -28,118 +28,106 @@ import NumberInput from '$lib/NumberInput.svelte';
   $: units = unitType==="imperial" ? ALL_UNITS.imperial : ALL_UNITS.metric
 </script>
 
-<div id="calculator">
-	<!-- <header>
-    <div>
-      <h1>Svelte Kit Template</h1>
-      <br/>
-      <div style="font-size:2em">
-        <Blanchor href="https://github.com/harryli0088/svelte-kit-template">
-          <Fa class="icon-button" icon={faGithub} style="color:white;"/>
-        </Blanchor>
-      </div>
-    </div>
-  </header> -->
+<div id="flex-container">
+  <section>
+    <h1>
+      Gas vs Electric Car Mileage Cost Calculator
+      <Blanchor href="https://github.com/harryli0088/mileage-cost" style="color:inherit;">
+        <Fa class="icon-button" icon={faGithub}/>
+      </Blanchor>
+    </h1>
 
-  <div id="gas-container">
-    <h2>Gas Car <Fa icon={faBurn} style="color:red"/></h2>
+    
   
-    <div class="inputs-container">
-      <div>
-        <NumberInput
-          bind:value={gasDistancePerVolume}
-          id="miles-per-volume"
-          label={`Miles per ${units.volume}`}
-          step={1}
-        />
+    <p>This website lets you compare how much it costs to drive 100 {units.distance.toLowerCase()} in a gas vs electric powered car. For the gas car, enter the cost of gas and fuel efficiency. For the electric car, enter how much you pay per kilowatt hour (KWH), ie from your electric bill or supercharging, and how many KWHs it takes for your car to drive 100 {units.distance.toLowerCase()}.</p>
+    <p>How I set the default numbers:</p>
+    <ul>
+      <li><b>Miles per Gallon:</b> the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/noframes/43475.shtml">2021 Honda CRV AWD</Blanchor>, a small SUV</li>
+      <li><b>Cost per Gallon:</b> a dollar estimate for the cost of gas</li>
+      <li><b>Cost per KWH:</b> my residential electricity cost in the Greater Boston Area</li>
+      <li><b>KWH per 100 Miles:</b> the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406">2021 Tesla Model Y Long Range</Blanchor>, a small SUV</li>
+    </ul>
+  
+    <p>You should also check out the EPA <Blanchor href="https://www.epa.gov/greenvehicles/electric-vehicle-myths">Electric Vehicle Myths</Blanchor>.</p>
+  </section>
+
+  <div id="calculator">
+    <div id="gas-container">
+      <h2>Gas Car <Fa icon={faBurn} style="color:red"/></h2>
+    
+      <div class="inputs-container">
+        <div>
+          <NumberInput
+            bind:value={gasDistancePerVolume}
+            id="miles-per-volume"
+            label={`${units.distance} per ${units.volume}`}
+            step={1}
+          />
+        </div>
+  
+        <div>
+          <NumberInput
+            bind:value={gasCostPerVolume}
+            id="cost-per-volume"
+            label={`Cost per ${units.volume}`}
+            step={.1}
+          />
+        </div>
       </div>
-
-      <div>
-        <NumberInput
-          bind:value={gasCostPerVolume}
-          id="cost-per-volume"
-          label={`Cost per ${units.volume}`}
-          step={.1}
-        />
-      </div>
-    </div>
-
-    <br/>
-
-    <div>
-      <div><b>Cost per 100 {units.distance}</b></div>
-      <div>100 * {gasCostPerVolume} / {gasDistancePerVolume} = </div>
+  
       <br/>
-      <div class="cost">${gasCost.toFixed(2)}</div>
-    </div>
-  </div>
-
-  <div id="electric-container">
-    <h2>Electric Car <Fa icon={faBolt} style="color:gold"/></h2>
-
-    <div class="inputs-container">
+  
       <div>
-        <NumberInput
-          bind:value={costPerKwh}
-          id="cost-per-kwh"
-          label={`Cost per KWH`}
-          step={.01}
-        />
+        <div><b>Cost per 100 {units.distance}</b></div>
+        <div>100 * {gasCostPerVolume} / {gasDistancePerVolume} = </div>
+        <br/>
+        <div class="cost">${gasCost.toFixed(2)}</div>
+      </div>
+    </div>
+  
+    <div id="electric-container">
+      <h2>Electric Car <Fa icon={faBolt} style="color:gold"/></h2>
+  
+      <div class="inputs-container">
+        <div>
+          <NumberInput
+            bind:value={costPerKwh}
+            id="cost-per-kwh"
+            label={`Cost per KWH`}
+            step={.01}
+          />
+        </div>
+        
+        <div>
+          <NumberInput
+            bind:value={kwhPer100Distance}
+            id="kwh-per-distance"
+            label={`KWH per 100 ${units.distance}`}
+            step={1}
+          />
+        </div>
       </div>
       
-      <div>
-        <NumberInput
-          bind:value={kwhPer100Distance}
-          id="kwh-per-distance"
-          label={`KWH per 100 ${units.distance}`}
-          step={1}
-        />
-      </div>
-    </div>
-    
-
-    <br/>
-
-    <div>
-      <div><b>Cost per 100 {units.distance}</b></div>
-      <div>{kwhPer100Distance} * {costPerKwh} = </div>
+  
       <br/>
-      <div class="cost">${electricCost.toFixed(2)}</div>
+  
+      <div>
+        <div><b>Cost per 100 {units.distance}</b></div>
+        <div>{kwhPer100Distance} * {costPerKwh} = </div>
+        <br/>
+        <div class="cost">${electricCost.toFixed(2)}</div>
+      </div>
+  
+      <button id="units-button" on:click={() => unitType = unitType==="metric"?"imperial":"metric"}>Toggle Units</button>
     </div>
   </div>
 </div>
 
-<section>
-  <h1>Gas vs Electric Car Mileage Cost Calculator</h1>
-
-  <p>This website lets you compare how much it costs to drive 100 {units.distance.toLowerCase()} in a gas vs electric powered car. For the gas car, enter the cost of gas and fuel efficiency. For the electric car, enter how much you pay per kilowatt hour (KWH), ie from your electric bill or supercharging, and how many KWHs it takes for your car to drive 100 {units.distance.toLowerCase()}.</p>
-  <p>How I set the default numbers:</p>
-  <ul>
-    <li><b>Miles per {units.volume}:</b> an estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/noframes/43475.shtml">2021 Honda CRV AWD</Blanchor>, a mid-sized SUV</li>
-    <li><b>Cost per {units.volume}:</b> a dollar estimate for the cost of gas</li>
-    <li><b>Cost per KWH:</b> my residential electricity cost in the Greater Boston Area</li>
-    <li><b>KWH per 100 {units.distance}:</b> the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406">2021 Tesla Model Y Long Range</Blanchor>, a mid-sized SUV</li>
-  </ul>
-
-  <p>You should also check out the Environment Protection Agency <Blanchor href="https://www.epa.gov/greenvehicles/electric-vehicle-myths#Myth5">Electric Vehicle Myths</Blanchor>.</p>
-</section>
-
 <style>
-	/* header {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
-		background-color: #17202A;
-		color: white;
-    text-align: center;
-    height: 70vh;
-	}
-  @media only screen and (min-width: 600px) {
-		header {
-			height: 50vh;
-		}
-	} */
+	#flex-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 
   #calculator {
     display: flex;
@@ -162,6 +150,7 @@ import NumberInput from '$lib/NumberInput.svelte';
 
   #electric-container {
     background-color: #EAFAF1;
+    position: relative;
   }
 
   .inputs-container > div {
@@ -220,5 +209,11 @@ import NumberInput from '$lib/NumberInput.svelte';
     background-color: #2ECC71;
   }
 
-  section {}
+  #units-button {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    margin-bottom: 0;
+    background-color: #ddd;
+  }
 </style>
