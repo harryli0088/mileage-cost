@@ -17,21 +17,21 @@
 
 		
 
-		<link rel="stylesheet" href="/svelte-kit-template/_app/assets/start-61d1577b.css">
-		<link rel="stylesheet" href="/svelte-kit-template/_app/assets/vendor-ec9510ad.css">
-		<link rel="stylesheet" href="/svelte-kit-template/_app/assets/pages/__layout.svelte-1ae56e07.css">
-		<link rel="stylesheet" href="/svelte-kit-template/_app/assets/pages/index.svelte-dcca947f.css">
-		<link rel="modulepreload" href="/svelte-kit-template/_app/start-3caddf38.js">
-		<link rel="modulepreload" href="/svelte-kit-template/_app/chunks/vendor-2ab9cce6.js">
-		<link rel="modulepreload" href="/svelte-kit-template/_app/pages/__layout.svelte-0261e0e7.js">
-		<link rel="modulepreload" href="/svelte-kit-template/_app/chunks/Blanchor-7cc4bf25.js">
-		<link rel="modulepreload" href="/svelte-kit-template/_app/pages/index.svelte-b3d1b471.js">
+		<link rel="stylesheet" href="/mileage-cost/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/mileage-cost/_app/assets/vendor-ec9510ad.css">
+		<link rel="stylesheet" href="/mileage-cost/_app/assets/pages/__layout.svelte-1ae56e07.css">
+		<link rel="stylesheet" href="/mileage-cost/_app/assets/pages/index.svelte-dcca947f.css">
+		<link rel="modulepreload" href="/mileage-cost/_app/start-06f51f65.js">
+		<link rel="modulepreload" href="/mileage-cost/_app/chunks/vendor-2ab9cce6.js">
+		<link rel="modulepreload" href="/mileage-cost/_app/pages/__layout.svelte-0261e0e7.js">
+		<link rel="modulepreload" href="/mileage-cost/_app/chunks/Blanchor-7cc4bf25.js">
+		<link rel="modulepreload" href="/mileage-cost/_app/pages/index.svelte-57625b72.js">
 
 		<script type="module">
-			import { start } from "/svelte-kit-template/_app/start-3caddf38.js";
+			import { start } from "/mileage-cost/_app/start-06f51f65.js";
 			start({
 				target: document.querySelector("#svelte"),
-				paths: {"base":"/svelte-kit-template","assets":"/svelte-kit-template"},
+				paths: {"base":"/mileage-cost","assets":"/mileage-cost"},
 				session: {},
 				route: true,
 				spa: false,
@@ -40,8 +40,8 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/svelte-kit-template/_app/pages/__layout.svelte-0261e0e7.js"),
-						import("/svelte-kit-template/_app/pages/index.svelte-b3d1b471.js")
+						import("/mileage-cost/_app/pages/__layout.svelte-0261e0e7.js"),
+						import("/mileage-cost/_app/pages/index.svelte-57625b72.js")
 					],
 					url: new URL("sveltekit://prerender/"),
 					params: {}
@@ -76,7 +76,7 @@
       <div class="inputs-container svelte-1t5uf72"><div class="svelte-1t5uf72"><span class="svelte-yeuqye"><label for="miles-per-volume" class="svelte-yeuqye">Miles per Gallon</label>
   <div class="number-input svelte-yeuqye"><button class="icon-container left svelte-yeuqye"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></button>
 
-    <input id="miles-per-volume" step="1" type="number" class="svelte-yeuqye" value="29">
+    <input id="miles-per-volume" min="0" step="1" type="number" class="svelte-yeuqye" value="29">
 
     <button class="icon-container right svelte-yeuqye"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></button></div>
 </span></div>
@@ -84,7 +84,7 @@
         <div class="svelte-1t5uf72"><span class="svelte-yeuqye"><label for="cost-per-volume" class="svelte-yeuqye">Cost per Gallon</label>
   <div class="number-input svelte-yeuqye"><button class="icon-container left svelte-yeuqye"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></button>
 
-    <input id="cost-per-volume" step="0.1" type="number" class="svelte-yeuqye" value="3.5">
+    <input id="cost-per-volume" min="0" step="0.1" type="number" class="svelte-yeuqye" value="3.5">
 
     <button class="icon-container right svelte-yeuqye"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></button></div>
 </span></div></div>
@@ -101,7 +101,7 @@
       <div class="inputs-container svelte-1t5uf72"><div class="svelte-1t5uf72"><span class="svelte-yeuqye"><label for="cost-per-kwh" class="svelte-yeuqye">Cost per KWH</label>
   <div class="number-input svelte-yeuqye"><button class="icon-container left svelte-yeuqye"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></button>
 
-    <input id="cost-per-kwh" step="0.01" type="number" class="svelte-yeuqye" value="0.23">
+    <input id="cost-per-kwh" min="0" step="0.01" type="number" class="svelte-yeuqye" value="0.23">
 
     <button class="icon-container right svelte-yeuqye"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></button></div>
 </span></div>
@@ -109,7 +109,7 @@
         <div class="svelte-1t5uf72"><span class="svelte-yeuqye"><label for="kwh-per-distance" class="svelte-yeuqye">KWH per 100 Miles</label>
   <div class="number-input svelte-yeuqye"><button class="icon-container left svelte-yeuqye"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></button>
 
-    <input id="kwh-per-distance" step="1" type="number" class="svelte-yeuqye" value="27">
+    <input id="kwh-per-distance" min="0" step="1" type="number" class="svelte-yeuqye" value="27">
 
     <button class="icon-container right svelte-yeuqye"><svg id="" class="svelte-fa svelte-1cj2gr0" style="height:1em;vertical-align:-.125em;transform-origin:center;overflow:visible" viewBox="0 0 448 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(224 256)" transform-origin="112 0"><g transform="translate(0,0) scale(1,1)"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" fill="currentColor" transform="translate(-224 -256)"></path></g></g></svg></button></div>
 </span></div></div>
