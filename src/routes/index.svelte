@@ -28,7 +28,7 @@ import NumberInput from '$lib/NumberInput.svelte';
   $: units = unitType==="imperial" ? ALL_UNITS.imperial : ALL_UNITS.metric
 </script>
 
-<main>
+<div id="calculator">
 	<!-- <header>
     <div>
       <h1>Svelte Kit Template</h1>
@@ -107,7 +107,22 @@ import NumberInput from '$lib/NumberInput.svelte';
       <div class="cost">${electricCost.toFixed(2)}</div>
     </div>
   </div>
-</main>
+</div>
+
+<section>
+  <h1>Gas vs Electric Car Mileage Cost Calculator</h1>
+
+  <p>This website lets you compare how much it costs to drive 100 {units.distance.toLowerCase()} in a gas vs electric powered car. For the gas car, enter the cost of gas and fuel efficiency. For the electric car, enter how much you pay per kilowatt hour (KWH), ie from your electric bill or supercharging, and how many KWHs it takes for your car to drive 100 {units.distance.toLowerCase()}.</p>
+  <p>How I set the default numbers:</p>
+  <ul>
+    <li><b>Miles per {units.volume}:</b> an estimate for the <Blanchor href="https://automobiles.honda.com/cr-v">2022 Honda CRV</Blanchor>, a mid-sized SUV</li>
+    <li><b>Cost per {units.volume}:</b> a dollar estimate for the cost of gas</li>
+    <li><b>Cost per KWH:</b> my residential electricity cost in the Greater Boston Area</li>
+    <li><b>KWH per 100 {units.distance}:</b> the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406">Tesla Model Y Long Range</Blanchor>, a mid-sized SUV</li>
+  </ul>
+
+  <p>You should also check out the Environment Protection Agency <Blanchor href="https://www.epa.gov/greenvehicles/electric-vehicle-myths#Myth5">Electric Vehicle Myths</Blanchor>.</p>
+</section>
 
 <style>
 	/* header {
@@ -126,7 +141,7 @@ import NumberInput from '$lib/NumberInput.svelte';
 		}
 	} */
 
-  main {
+  #calculator {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -160,7 +175,7 @@ import NumberInput from '$lib/NumberInput.svelte';
   /* @media only screen and (min-width: 600px) {
   } */
   @media only screen and (min-width: 1000px) {
-    main {
+    #calculator {
       display: flex;
       flex-direction: row;
     }
@@ -204,4 +219,6 @@ import NumberInput from '$lib/NumberInput.svelte';
   #electric-container .cost {
     background-color: #2ECC71;
   }
+
+  section {}
 </style>

@@ -9,14 +9,6 @@ import Blanchor from '$lib/Blanchor.svelte';
 </main>
 
 <footer>
-  <p>Environmental Projection Agency References</p>
-  <ul>
-    <li><Blanchor href="https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406">Tesla Model Y Long Range KWH Stats</Blanchor></li>
-    <li><Blanchor href="https://www.epa.gov/greenvehicles/electric-vehicle-myths#Myth5">Electric Vehicle Myths</Blanchor></li>
-  </ul>
-
-  <hr/>
-  
   <p>Built using <Blanchor href="https://kit.svelte.dev/">Svelte Kit</Blanchor> and <Blanchor href="https://www.typescriptlang.org/">TypeScript</Blanchor></p>
   <p>Github Repo: <Blanchor href="https://github.com/harryli0088/svelte-kit-template">https://github.com/harryli0088/svelte-kit-template</Blanchor></p>
   <p>Icons provided by Font Awesome: <Blanchor href="https://fontawesome.com/license">https://fontawesome.com/license</Blanchor></p>
