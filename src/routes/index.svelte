@@ -70,12 +70,11 @@
   let shareButtonText:string = "Share"
 
   function shareUrl() {
-    const location = window.location
-    const url = `${location.origin}${location.pathname}?cpv=${gasCostPerVolume}&dpv=${gasDistancePerVolume}&kpd=${kwhPer100Distance}cpk=${costPerKwh}`
-    navigator.clipboard.writeText(url)
+    const url = `${window.location.origin}${window.location.pathname}?cpv=${gasCostPerVolume}&dpv=${gasDistancePerVolume}&kpd=${kwhPer100Distance}cpk=${costPerKwh}`
+    navigator.clipboard.writeText(url) //copy to clipboard
 
-    shareButtonText = "Copied!"
-    window.setTimeout(() => {shareButtonText = "Share"}, 2000)
+    shareButtonText = "Copied!" //tell user the URL was copied
+    window.setTimeout(() => {shareButtonText = "Share"}, 2000) //reset the button text after a few seconds
   }
 </script>
 
@@ -93,10 +92,10 @@
     <p>This website lets you compare how much it costs to drive 100 {units.distance.toLowerCase()} in a gas vs electric powered car. For the gas car, enter the cost of gas and fuel efficiency. For the electric car, enter how much you pay per kilowatt hour (KWH), ie from your electric bill or supercharging, and how many KWHs it takes for your car to drive 100 {units.distance.toLowerCase()}.</p>
     <p>How I set the default numbers:</p>
     <ul>
-      <li><b>Miles per Gallon:</b> the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/noframes/43475.shtml">2021 Honda CRV AWD</Blanchor>, a small SUV</li>
-      <li><b>Cost per Gallon:</b> a dollar estimate for the cost of gas</li>
-      <li><b>Cost per KWH:</b> my residential electricity cost in the Greater Boston Area</li>
-      <li><b>KWH per 100 Miles:</b> the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406">2021 Tesla Model Y Long Range</Blanchor>, a small SUV</li>
+      <li><b>Miles per Gallon:</b> 29, the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/noframes/43475.shtml">2021 Honda CRV AWD</Blanchor>, a small SUV</li>
+      <li><b>Cost per Gallon:</b> $3.50, a arbitrary dollar estimate for the cost of gas</li>
+      <li><b>Cost per KWH:</b> $0.23, my residential electricity cost in the Greater Boston Area</li>
+      <li><b>KWH per 100 Miles:</b> 27, the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406">2021 Tesla Model Y Long Range</Blanchor>, a small SUV</li>
     </ul>
   
     <p>You should also check out the EPA <Blanchor href="https://www.epa.gov/greenvehicles/electric-vehicle-myths">Electric Vehicle Myths</Blanchor>.</p>
