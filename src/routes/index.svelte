@@ -1,11 +1,11 @@
 <script lang="ts">
   import Fa from 'svelte-fa'
-  import { faBolt, faBurn } from '@fortawesome/free-solid-svg-icons'
+  import { faBolt, faBurn, faLink } from '@fortawesome/free-solid-svg-icons'
   import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
   import Blanchor from '$lib/Blanchor.svelte';
   import NumberInput from '$lib/NumberInput.svelte';
-import { onMount } from 'svelte';
+  import { onMount } from 'svelte';
 
   const ALL_UNITS = {
     imperial: {
@@ -65,6 +65,18 @@ import { onMount } from 'svelte';
     setStateFromQueries(queries, "kpd", (value: number) => kwhPer100Distance = value)
     setStateFromQueries(queries, "cpk", (value: number) => costPerKwh = value)
   })
+
+
+  let shareButtonText:string = "Share"
+
+  function shareUrl() {
+    const location = window.location
+    const url = `${location.origin}${location.pathname}?cpv=${gasCostPerVolume}&dpv=${gasDistancePerVolume}&kpd=${kwhPer100Distance}cpk=${costPerKwh}`
+    navigator.clipboard.writeText(url)
+
+    shareButtonText = "Copied!"
+    window.setTimeout(() => {shareButtonText = "Share"}, 2000)
+  }
 </script>
 
 <div id="flex-container">
@@ -90,74 +102,79 @@ import { onMount } from 'svelte';
     <p>You should also check out the EPA <Blanchor href="https://www.epa.gov/greenvehicles/electric-vehicle-myths">Electric Vehicle Myths</Blanchor>.</p>
   </section>
 
-  <div id="calculator">
-    <div id="gas-container">
-      <h2>Gas Car <Fa icon={faBurn} style="color:red"/></h2>
+  <div>
+    <div id="calculator">
+      <div id="gas-container">
+        <h2>Gas Car <Fa icon={faBurn} style="color:red"/></h2>
+      
+        <div class="inputs-container">
+          <div>
+            <NumberInput
+              bind:value={gasDistancePerVolume}
+              id="miles-per-volume"
+              label={`${units.distance} per ${units.volume}`}
+              step={1}
+            />
+          </div>
     
-      <div class="inputs-container">
-        <div>
-          <NumberInput
-            bind:value={gasDistancePerVolume}
-            id="miles-per-volume"
-            label={`${units.distance} per ${units.volume}`}
-            step={1}
-          />
+          <div>
+            <NumberInput
+              bind:value={gasCostPerVolume}
+              id="cost-per-volume"
+              label={`Cost per ${units.volume}`}
+              step={.1}
+            />
+          </div>
         </div>
-  
-        <div>
-          <NumberInput
-            bind:value={gasCostPerVolume}
-            id="cost-per-volume"
-            label={`Cost per ${units.volume}`}
-            step={.1}
-          />
-        </div>
-      </div>
-  
-      <br/>
-  
-      <div>
-        <div><b>Cost per 100 {units.distance}</b></div>
-        <div>100 * {gasCostPerVolume} / {gasDistancePerVolume} = </div>
+    
         <br/>
-        <div class="cost">${gasCost.toFixed(2)}</div>
-      </div>
-    </div>
-  
-    <div id="electric-container">
-      <h2>Electric Car <Fa icon={faBolt} style="color:gold"/></h2>
-  
-      <div class="inputs-container">
+    
         <div>
-          <NumberInput
-            bind:value={costPerKwh}
-            id="cost-per-kwh"
-            label={`Cost per KWH`}
-            step={.01}
-          />
+          <div><b>Cost per 100 {units.distance}</b></div>
+          <div>100 * {gasCostPerVolume} / {gasDistancePerVolume} = </div>
+          <br/>
+          <div class="cost">${gasCost.toFixed(2)}</div>
+        </div>
+      </div>
+    
+      <div id="electric-container">
+        <h2>Electric Car <Fa icon={faBolt} style="color:gold"/></h2>
+    
+        <div class="inputs-container">
+          <div>
+            <NumberInput
+              bind:value={costPerKwh}
+              id="cost-per-kwh"
+              label={`Cost per KWH`}
+              step={.01}
+            />
+          </div>
+          
+          <div>
+            <NumberInput
+              bind:value={kwhPer100Distance}
+              id="kwh-per-distance"
+              label={`KWH per 100 ${units.distance}`}
+              step={1}
+            />
+          </div>
         </div>
         
-        <div>
-          <NumberInput
-            bind:value={kwhPer100Distance}
-            id="kwh-per-distance"
-            label={`KWH per 100 ${units.distance}`}
-            step={1}
-          />
-        </div>
-      </div>
-      
-  
-      <br/>
-  
-      <div>
-        <div><b>Cost per 100 {units.distance}</b></div>
-        <div>{kwhPer100Distance} * {costPerKwh} = </div>
+    
         <br/>
-        <div class="cost">${electricCost.toFixed(2)}</div>
+    
+        <div>
+          <div><b>Cost per 100 {units.distance}</b></div>
+          <div>{kwhPer100Distance} * {costPerKwh} = </div>
+          <br/>
+          <div class="cost">${electricCost.toFixed(2)}</div>
+        </div>
+    
+        <button id="units-button" on:click={() => unitType = unitType==="metric"?"imperial":"metric"}>Toggle Units</button>
       </div>
-  
-      <button id="units-button" on:click={() => unitType = unitType==="metric"?"imperial":"metric"}>Toggle Units</button>
+    </div>
+    <div id="share-container">
+      <button on:click={() => shareUrl()}>{shareButtonText} <Fa icon={faLink}/></button>
     </div>
   </div>
 </div>
@@ -254,5 +271,15 @@ import { onMount } from 'svelte';
     right: 1em;
     margin-bottom: 0;
     background-color: #ddd;
+  }
+
+  #share-container {
+    text-align: center;
+    padding: 0.5em;
+  }
+
+  #share-container button {
+    background-color: #85C1E9;
+    color: white;
   }
 </style>
