@@ -5,6 +5,7 @@
 
   import Blanchor from '$lib/Blanchor.svelte';
   import NumberInput from '$lib/NumberInput.svelte';
+import { onMount } from 'svelte';
 
   const ALL_UNITS = {
     imperial: {
@@ -26,6 +27,44 @@
   $: electricCost = kwhPer100Distance * costPerKwh //kwh / 100 distance * cost / kwh = cost / 100 distance
   $: gasCost = 100 * gasCostPerVolume / gasDistancePerVolume //100 distance * (cost/volume) / ( distance/volume ) = cost / 100 distance
   $: units = unitType==="imperial" ? ALL_UNITS.imperial : ALL_UNITS.metric
+
+  //adapted from https://stackoverflow.com/questions/8486099/how-do-i-parse-a-url-query-parameters-in-javascript
+  function getParamsFromUrl():{[key:string]:string} {
+    const result:{[key:string]:string} = {} //initialize an empty object
+    window.location.search.slice(1).split("&").forEach((query) => { //for each query in the url
+      const [key, value] = query.split("="); //split the key and value
+      if(key && value) { //if there is a key and value
+        result[key] = decodeURIComponent(value) //add the key value pair to our object
+      }
+    })
+    return result //return the object
+  }
+
+  onMount(() => {
+    const queries = getParamsFromUrl() //on mount, get the queries from the url
+
+    /**
+     * tries to parse the value for the key as a float, and runs the callback
+     * @param queries   key vlaue object
+     * @param key       key of interest
+     * @param callback  callback function to run if there is a value
+     */
+    function setStateFromQueries(
+      queries: {[key:string]:string},
+      key:string,
+      callback: (value:number) => any
+    ) {
+      const value = parseFloat(queries?.[key]) //get the value for this key from the query, and parse it as a float
+      if(!isNaN(value)) { //if the value is a number
+        callback(value) //run the callback
+      }
+    }
+
+    setStateFromQueries(queries, "cpv", (value: number) => gasCostPerVolume = value)
+    setStateFromQueries(queries, "dpv", (value: number) => gasDistancePerVolume = value)
+    setStateFromQueries(queries, "kpd", (value: number) => kwhPer100Distance = value)
+    setStateFromQueries(queries, "cpk", (value: number) => costPerKwh = value)
+  })
 </script>
 
 <div id="flex-container">
