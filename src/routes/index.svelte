@@ -18,8 +18,8 @@
     },
   }
 
-  let costPerKwh:number = 0.23
-  let gasCostPerVolume:number = 3.5 //ie price of gas per gallon
+  let costPerKwh:number = 0.34
+  let gasCostPerVolume:number = 4.0 //ie price of gas per gallon
   let gasDistancePerVolume: number = 29 //ie mpg
   let kwhPer100Distance:number = 27 // Tesla Model Y Long Range https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406
   let unitType: "imperial" | "metric" = "imperial"
@@ -70,7 +70,7 @@
   let shareButtonText:string = "Share"
 
   function shareUrl() {
-    const url = `${window.location.origin}${window.location.pathname}?cpv=${gasCostPerVolume}&dpv=${gasDistancePerVolume}&kpd=${kwhPer100Distance}cpk=${costPerKwh}`
+    const url = `${window.location.origin}${window.location.pathname}?cpv=${gasCostPerVolume}&dpv=${gasDistancePerVolume}&kpd=${kwhPer100Distance}&cpk=${costPerKwh}`
     navigator.clipboard.writeText(url) //copy to clipboard
 
     shareButtonText = "Copied!" //tell user the URL was copied
@@ -93,8 +93,8 @@
     <p>How I set the default numbers:</p>
     <ul>
       <li><b>Miles per Gallon:</b> 29, the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/noframes/43475.shtml">2021 Honda CRV AWD</Blanchor>, a small SUV</li>
-      <li><b>Cost per Gallon:</b> $3.50, a arbitrary dollar estimate for the cost of gas</li>
-      <li><b>Cost per KWH:</b> $0.23, my residential electricity cost in the Greater Boston Area</li>
+      <li><b>Cost per Gallon:</b> $4.00, a arbitrary dollar estimate for the cost of gas</li>
+      <li><b>Cost per KWH:</b> $0.34, my residential electricity cost in the Greater Boston Area</li>
       <li><b>KWH per 100 Miles:</b> 27, the EPA estimate for the <Blanchor href="https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=43406">2021 Tesla Model Y Long Range</Blanchor>, a small SUV</li>
     </ul>
   
