@@ -18,6 +18,13 @@
     },
   }
 
+  const URL_PARAMS = {
+    cpv: "cpv",
+    dpv: "dpv",
+    kpd: "kpd",
+    cpk: "cpk",
+  }
+
   let costPerKwh:number = 0.34
   let gasCostPerVolume:number = 4.0 //ie price of gas per gallon
   let gasDistancePerVolume: number = 29 //ie mpg
@@ -60,17 +67,22 @@
       }
     }
 
-    setStateFromQueries(queries, "cpv", (value: number) => gasCostPerVolume = value)
-    setStateFromQueries(queries, "dpv", (value: number) => gasDistancePerVolume = value)
-    setStateFromQueries(queries, "kpd", (value: number) => kwhPer100Distance = value)
-    setStateFromQueries(queries, "cpk", (value: number) => costPerKwh = value)
+    setStateFromQueries(queries, URL_PARAMS.cpv, (value: number) => gasCostPerVolume = value)
+    setStateFromQueries(queries, URL_PARAMS.dpv, (value: number) => gasDistancePerVolume = value)
+    setStateFromQueries(queries, URL_PARAMS.kpd, (value: number) => kwhPer100Distance = value)
+    setStateFromQueries(queries, URL_PARAMS.cpk, (value: number) => costPerKwh = value)
   })
 
 
   let shareButtonText:string = "Share"
 
   function shareUrl() {
-    const url = `${window.location.origin}${window.location.pathname}?cpv=${gasCostPerVolume}&dpv=${gasDistancePerVolume}&kpd=${kwhPer100Distance}&cpk=${costPerKwh}`
+    const url = `${window.location.origin}${window.location.pathname}?${new URLSearchParams({
+      [URL_PARAMS.cpv]: gasCostPerVolume.toString(),
+      [URL_PARAMS.dpv]: gasDistancePerVolume.toString(),
+      [URL_PARAMS.kpd]: kwhPer100Distance.toString(),
+      [URL_PARAMS.cpk]: costPerKwh.toString(),
+    })}`
     navigator.clipboard.writeText(url) //copy to clipboard
 
     shareButtonText = "Copied!" //tell user the URL was copied
@@ -169,7 +181,7 @@
           <div class="cost">${electricCost.toFixed(2)}</div>
         </div>
     
-        <button id="units-button" on:click={() => unitType = unitType==="metric"?"imperial":"metric"}>Toggle Units</button>
+        <button id="units-button" on:click={() => unitType = unitType==="metric"?"imperial":"metric"}>Switch to {unitType==="metric"?"Imperial":"Metric"}</button>
       </div>
     </div>
     <div id="share-container">
